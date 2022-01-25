@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "Private box",
+    "slug": "Private-box",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "buildNumber": "1.0.2",
+      "bundleIdentifier": "com.private.box",
+      "config": {
+        "googleMobileAdsAppId": ""
+      }
+    },
+    "android": {
+      "package": "com.private.box",
+          "versionCode": 1,
+          "config": {
+            "googleMobileAdsAppId": "ca-app-pub-7098615219534704~7106871819"
+          }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
