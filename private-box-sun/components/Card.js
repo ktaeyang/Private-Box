@@ -10,15 +10,13 @@ import { firebase_db } from "../firebaseConfig";
 export default function Card({ content, props, cardState, setCardState, route, navigation }) {
   const [like,setLike] = useState([false])
   
-  let userUniqueId;
-
+  let userUniqueId; // 안드로이드 or IOS userID 를 담을 변수
   const getUserId = async () => {
     if (isIOS) {
       let iosId = await Application.getIosIdForVendorAsync();
       userUniqueId = iosId
     } else {
       userUniqueId = await Application.androidId
-      //setUserId(userUniqueId)
     }
   }
   const delImage = async () => {

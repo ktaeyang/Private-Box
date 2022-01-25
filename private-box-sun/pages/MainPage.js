@@ -38,21 +38,19 @@ export default function MainPage({ navigation, route }) {
         });
 
     }, []);
-    let userUniqueId;
+    let userUniqueId; // 안드로이드 or IOS userID 를 담을 변수
     const getUserId = async () => {
         if (isIOS) {
             let iosId = await Application.getIosIdForVendorAsync();
             userUniqueId = iosId
         } else {
             userUniqueId = await Application.androidId
-            //setUserId(userUniqueId)
         }
     }
     const feedUpdate = () => {
         firebase_db.ref(`user/${userUniqueId}/images/`).once('value').then(snapshot => {
             let resultImage = snapshot.val();
-            //console.log(temp)
-            //console.log(cardState)
+            console.log(resultImage)
             if (resultImage != null) {
                 setCardState(resultImage)
             }
@@ -62,6 +60,7 @@ export default function MainPage({ navigation, route }) {
         })
         firebase_db.ref(`user/${userUniqueId}/video/`).once('value').then(snapshot => {
             let resultVideo = snapshot.val();
+            console.log(resultVideo)
             if (resultVideo != null) {
                 setVideoState(resultVideo)
             }
@@ -71,8 +70,7 @@ export default function MainPage({ navigation, route }) {
         })
         firebase_db.ref(`user/${userUniqueId}/documents/`).once('value').then(snapshot => {
             let resultDoc = snapshot.val();
-            //console.log(temp)
-            //console.log(cardState)
+            console.log(resultDoc)
             if (resultDoc != null) {
                 setDocState(resultDoc)
             }
@@ -87,7 +85,6 @@ export default function MainPage({ navigation, route }) {
             title: 'PRIVATE BOX',
             headerRight: () => (
                 <View style={styles.headerRight}>
-
                     <TouchableOpacity style={styles.btnicon} onPress={() => setShowModal(true)}>
                         <Icon2 name='plus' size={24} color="#000" />
                     </TouchableOpacity>
@@ -98,9 +95,8 @@ export default function MainPage({ navigation, route }) {
         LogBox.ignoreLogs(['Setting a timer for a long period of time'])
         setTimeout(() => {
             feedUpdate()
-
             setReady(false)
-        }, 3000)
+        }, 2000)
 
     }, [])
 
