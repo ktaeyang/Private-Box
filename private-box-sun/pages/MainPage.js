@@ -62,8 +62,6 @@ export default function MainPage({ navigation, route }) {
         })
         firebase_db.ref(`user/${userUniqueId}/video/`).once('value').then(snapshot => {
             let resultVideo = snapshot.val();
-            //console.log(temp)
-            //console.log(cardState)
             if (resultVideo != null) {
                 setVideoState(resultVideo)
             }
