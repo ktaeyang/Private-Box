@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Share, Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions , Image, Platform } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import IconEvil from 'react-native-vector-icons/EvilIcons'
 import IconAnt from 'react-native-vector-icons/AntDesign'
@@ -6,10 +6,11 @@ const isIOS = Platform.OS === 'ios'
 import * as Application from 'expo-application';
 import AlertAsync from 'react-native-alert-async';
 import { firebase_db } from "../firebaseConfig";
+import ImageModal from 'react-native-image-modal';
 
 export default function Card({ content, props, cardState, setCardState, route, navigation }) {
   const [like,setLike] = useState([false])
-  
+  let imageWidth = Dimensions.get('window').width;
   let userUniqueId; // 안드로이드 or IOS userID 를 담을 변수
   const getUserId = async () => {
     if (isIOS) {
@@ -42,7 +43,6 @@ export default function Card({ content, props, cardState, setCardState, route, n
 
         if (temp === null) {
           setCardState([]);
-
         }
         else {
           setCardState(temp);
@@ -62,9 +62,16 @@ export default function Card({ content, props, cardState, setCardState, route, n
   }
   return (
     <View style={styles.card}>
-      <TouchableOpacity>
-        <Image style={styles.cardImage} source={{ uri: content.uri }} />
-      </TouchableOpacity>
+        <ImageModal 
+        swipeToDismiss={false}
+        resizeMode="contain"
+        imageBackgroundColor="#000000"
+        style={{
+          width: imageWidth,
+          height: 300,
+        }}
+        source={{ uri: content.uri }} 
+        onTap={() => console.log('onTap')} />
       <View style={styles.button}>
         <TouchableOpacity style={styles.buttonContent} onPress={bLike}><IconAnt name={like? 'hearto':'heart'} size={18} color={like? "#aaa" : "#FF0000"}></IconAnt></TouchableOpacity>
         <TouchableOpacity style={styles.buttonContent}><IconEvil name='share-apple' size={25} color="#aaa"></IconEvil></TouchableOpacity>
@@ -84,14 +91,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     marginBottom: 10,
   },
-  cardImage: {
-    flex: 1,
-    width: '100%',
-    height: 400,
-    alignSelf: 'center',
-    margin: 20,
-  },
   button: {
+    marginVertical : 20,
     marginBottom: 20,
     flexDirection: 'row',
   },
