@@ -70,8 +70,7 @@ export default function Card({ content, props, cardState, setCardState, route, n
           width: imageWidth,
           height: 300,
         }}
-        source={{ uri: content.uri }} 
-        onTap={() => console.log('onTap')} />
+        source={{ uri: content.uri }}/>
       <View style={styles.button}>
         <TouchableOpacity style={styles.buttonContent} onPress={bLike}><IconAnt name={like? 'hearto':'heart'} size={18} color={like? "#aaa" : "#FF0000"}></IconAnt></TouchableOpacity>
         <TouchableOpacity style={styles.buttonContent}><IconEvil name='share-apple' size={25} color="#aaa"></IconEvil></TouchableOpacity>
