@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions , Image, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions , Image, Platform, Alert } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import IconEvil from 'react-native-vector-icons/EvilIcons'
 import IconAnt from 'react-native-vector-icons/AntDesign'
@@ -35,7 +35,7 @@ export default function Card({ content, props, cardState, setCardState, route, n
       })
     if (textif === 'yes') {
       firebase_db.ref(`user/${userUniqueId}/images/${props}`).remove().then(() => {
-        console.log('Delete Complete.')
+        Alert.alert('Private Box','삭제가 완료되었습니다.')
       })
 
       firebase_db.ref(`user/${userUniqueId}/images/`).once('value').then(snapshot => {
