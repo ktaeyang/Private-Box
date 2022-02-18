@@ -96,7 +96,7 @@ export default function MainPage({ navigation, route }) {
         setTimeout(() => {
             feedUpdate()
             setReady(false)
-        }, 2000)
+        }, 1000)
 
     }, [])
 
