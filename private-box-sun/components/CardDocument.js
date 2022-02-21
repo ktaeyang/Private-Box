@@ -96,15 +96,15 @@ export default function CardDocument({
       <View style={styles.button}>
         <TouchableOpacity style={styles.buttonContent} onPress={bLike}>
           <IconAnt
-            name={like ? "hearto" : "heart"}
+            name={like ? "heart" : "hearto"}
             size={18}
-            color={like ? "#aaa" : "#FF0000"}
+            color={like ? "#FF0000" : "#aaa"}
           ></IconAnt>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonContent}>
           <IconEvil name="share-apple" size={25} color="#aaa"></IconEvil>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonContent} onPress={() => delDoc()}>
+        <TouchableOpacity style={styles.buttonRemove} onPress={() => delDoc()}>
           <IconEvil name="trash" size={25} color="#aaa"></IconEvil>
         </TouchableOpacity>
       </View>
@@ -138,5 +138,10 @@ const styles = StyleSheet.create({
     marginLeft: 7,
     fontWeight: "bold",
     fontSize: 16,
+  },
+  buttonRemove: {
+    flex: 1,
+    marginRight: 10,
+    alignItems: "flex-end",
   },
 });
