@@ -6,8 +6,6 @@
 
 배포 : [https://play.google.com/store/apps/details?id=com.private.box](https://play.google.com/store/apps/details?id=com.private.box)
 
-#### > [개발 History]()
-
 ___
 
 ### 사용 기술
