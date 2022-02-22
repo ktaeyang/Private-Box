@@ -110,6 +110,7 @@ export default function MainPage({ navigation, route }) {
     });
     getUserId();
     LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
+    LogBox.ignoreLogs([`Each child in a list should have a unique "key" prop.`]);
     setTimeout(() => {
       feedUpdate();
       setReady(false);
@@ -204,6 +205,7 @@ export default function MainPage({ navigation, route }) {
                 <Card
                   content={content}
                   props={i}
+                  key = {i}
                   cardState={cardState}
                   setCardState={setCardState}
                   navigation={navigation}
@@ -223,6 +225,7 @@ export default function MainPage({ navigation, route }) {
                 <CardVideo
                   content={content}
                   props={i}
+                  key = {i}
                   videoState={videoState}
                   setVideoState={setVideoState}
                   navigation={navigation}
@@ -240,6 +243,7 @@ export default function MainPage({ navigation, route }) {
                 <CardDocument
                   content={content}
                   props={i}
+                  key = {i}
                   docState={docState}
                   setDocState={setDocState}
                   navigation={navigation}

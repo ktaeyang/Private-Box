@@ -16,7 +16,6 @@ import Modal from "react-native-modal";
 import { firebase_db } from "../firebaseConfig";
 import * as Application from "expo-application";
 import AlertAsync from "react-native-alert-async";
-import PdfThumbnail from 'react-native-pdf-thumbnail';
 
 const isIOS = Platform.OS === "ios";
 export default function Upload(props) {
@@ -229,18 +228,18 @@ export default function Upload(props) {
       });
   };
   const pickFileDoc = async () => {
-    try {
+    // try {
         resultFile = await DocumentPicker.getDocumentAsync({
         type: "application/pdf",
       });
-      const result = await PdfThumbnail.generate(resultFile.uri, 0);
-      setThumbnail(result);
-      setError(undefined);
-    } catch (err) {
-        setThumbnail(undefined);
-        setError(err);
-        console.log(err)
-    }
+    //   const result = await PdfThumbnail.generate(resultFile.uri, 0);
+    //   setThumbnail(result);
+    //   setError(undefined);
+    // } catch (err) {
+    //     setThumbnail(undefined);
+    //     setError(err);
+    //     console.log(err)
+    // }
   };
   //#endregion
   return (
