@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flex: 1,
     flexDirection: "column",
-    marginBottom: 10,
   },
   cardImage: {
     flex: 1,
@@ -139,11 +138,12 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   button: {
+    marginVertical: 20,
     marginBottom: 20,
     flexDirection: "row",
   },
   buttonContent: {
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
   container: {
     flex: 1,

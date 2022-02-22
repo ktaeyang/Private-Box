@@ -24,6 +24,8 @@ export default function Card({
   setCardState,
   route,
   navigation,
+  blike,
+  
 }) {
   const [like, setLike] = useState(false);
   let imageWidth = Dimensions.get("window").width;
@@ -77,8 +79,10 @@ export default function Card({
   const bLike = () => {
     if (!like) {
       setLike(true);
+      blike = true;
     } else {
       setLike(false);
+      blike = false;
     }
   };
   return (
@@ -120,7 +124,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flex: 1,
     flexDirection: "column",
-    marginBottom: 10,
   },
   button: {
     marginVertical: 20,

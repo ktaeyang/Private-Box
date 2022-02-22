@@ -14,7 +14,6 @@ const isIOS = Platform.OS === "ios";
 import * as Application from "expo-application";
 import AlertAsync from "react-native-alert-async";
 import { firebase_db } from "../firebaseConfig";
-//import { WebView } from 'react-native-webview';
 
 export default function CardDocument({
   content,
@@ -79,16 +78,21 @@ export default function CardDocument({
       return;
     }
   };
+  
   return (
     <View style={styles.card}>
       <TouchableOpacity
         onPress={() => {
-          console.log(content.uri);
-          
+
         }}
       >
         <View style={styles.cardImage}>
+          <Image
+            style={{ width: "100%", borderWidth: 3 }}
+            resizeMode="contain"
+          />
           <Text style={styles.docText} numberOfLines={1}>
+            {`  `}
             {content.name}
           </Text>
         </View>
@@ -117,7 +121,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     flex: 1,
     flexDirection: "column",
-    marginBottom: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   cardImage: {
     flex: 1,
@@ -125,19 +130,21 @@ const styles = StyleSheet.create({
     height: 50,
     alignSelf: "center",
     margin: 20,
+    borderColor: "#dedede",
+    borderBottomWidth: 1,
   },
   button: {
     marginBottom: 20,
     flexDirection: "row",
   },
   buttonContent: {
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
   docText: {
     color: "#000",
     marginLeft: 7,
-    fontWeight: "bold",
-    fontSize: 16,
+    fontWeight: "600",
+    fontSize: 14,
   },
   buttonRemove: {
     flex: 1,

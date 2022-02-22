@@ -19,6 +19,7 @@ import Card from "../components/Card";
 import CardVideo from "../components/CardVideo";
 import CardDocument from "../components/CardDocument";
 import * as Application from "expo-application";
+
 const isIOS = Platform.OS === "ios";
 import {
   setTestDeviceIDAsync,
@@ -36,6 +37,8 @@ export default function MainPage({ navigation, route }) {
   const [videoState, setVideoState] = useState([]);
   const [docState, setDocState] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [blike, setLike] = useState(false);
+
   const wait = (timeout) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
   };
@@ -61,7 +64,6 @@ export default function MainPage({ navigation, route }) {
       .once("value")
       .then((snapshot) => {
         let resultImage = snapshot.val();
-        console.log(resultImage);
         if (resultImage != null) {
           setCardState(resultImage);
         } else {
@@ -73,7 +75,6 @@ export default function MainPage({ navigation, route }) {
       .once("value")
       .then((snapshot) => {
         let resultVideo = snapshot.val();
-        console.log(resultVideo);
         if (resultVideo != null) {
           setVideoState(resultVideo);
         } else {
@@ -85,7 +86,6 @@ export default function MainPage({ navigation, route }) {
       .once("value")
       .then((snapshot) => {
         let resultDoc = snapshot.val();
-        console.log(resultDoc);
         if (resultDoc != null) {
           setDocState(resultDoc);
         } else {
@@ -126,6 +126,7 @@ export default function MainPage({ navigation, route }) {
       }
     >
       <View style={styles.categories}>
+        
         <Text style={styles.cateText}>CATEGORIES</Text>
         <View style={styles.extension}>
           <TouchableOpacity
@@ -198,43 +199,53 @@ export default function MainPage({ navigation, route }) {
         {(state === "All Files" || state === "image") &&
           cardState.map((content, i) => {
             return (
-              <Card
-                content={content}
-                key={i}
-                props={i}
-                cardState={cardState}
-                setCardState={setCardState}
-                navigation={navigation}
-                refreshCard={() => onRefresh()}
-              />
+              <>
+                <View style={styles.CardHeader}></View>
+                <Card
+                  content={content}
+                  props={i}
+                  cardState={cardState}
+                  setCardState={setCardState}
+                  navigation={navigation}
+                  refreshCard={() => onRefresh()}
+                  blike={blike}
+                />
+                <View style={styles.CardFooter}></View>
+              </>
             );
           })}
+
         {(state === "All Files" || state === "video") &&
           videoState.map((content, i) => {
             return (
-              <CardVideo
-                content={content}
-                key={i}
-                props={i}
-                videoState={videoState}
-                setVideoState={setVideoState}
-                navigation={navigation}
-                refreshCard={() => onRefresh()}
-              />
+              <>
+                <View style={styles.CardHeader}></View>
+                <CardVideo
+                  content={content}
+                  props={i}
+                  videoState={videoState}
+                  setVideoState={setVideoState}
+                  navigation={navigation}
+                  refreshCard={() => onRefresh()}
+                />
+                <View style={styles.CardFooter}></View>
+              </>
             );
           })}
         {(state === "All Files" || state === "Documents") &&
           docState.map((content, i) => {
             return (
-              <CardDocument
-                content={content}
-                key={i}
-                props={i}
-                docState={docState}
-                setDocState={setDocState}
-                navigation={navigation}
-                refreshCard={() => onRefresh()}
-              />
+              <>
+                <View style={styles.CardHeader}></View>
+                <CardDocument
+                  content={content}
+                  props={i}
+                  docState={docState}
+                  setDocState={setDocState}
+                  navigation={navigation}
+                  refreshCard={() => onRefresh()}
+                />
+              </>
             );
           })}
       </View>
@@ -314,5 +325,23 @@ const styles = StyleSheet.create({
   banner: {
     width: "100%",
     height: 100,
+  },
+  CardHeader: {
+    flex: 1,
+    height: 30,
+    width: "100%",
+    backgroundColor: "#ffffff",
+    marginTop: 10,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+  },
+  CardFooter: {
+    flex: 1,
+    height: 20,
+    width: "100%",
+    backgroundColor: "#ffffff",
+    marginBottom: 5,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });
