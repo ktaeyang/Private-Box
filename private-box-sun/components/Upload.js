@@ -16,7 +16,9 @@ import Modal from "react-native-modal";
 import { firebase_db } from "../firebaseConfig";
 import * as Application from "expo-application";
 import AlertAsync from "react-native-alert-async";
-
+import {
+  AdMobInterstitial,
+} from "expo-ads-admob";
 const isIOS = Platform.OS === "ios";
 export default function Upload(props) {
   const [thumbnail, setThumbnail] = useState("");
@@ -27,6 +29,26 @@ export default function Upload(props) {
     Alert.alert("Private Box", "준비 중입니다.");
     //console.log(navigation)
   };
+
+  useEffect(()=>{
+    Platform.OS === 'android' && AdMobInterstitial.setAdUnitID("ca-app-pub-7098615219534704/9885462833")
+
+    AdMobInterstitial.addEventListener("interstitialDidLoad", () =>
+        console.log("interstitialDidLoad")
+    );
+    AdMobInterstitial.addEventListener("interstitialDidFailToLoad", () =>
+        console.log("interstitialDidFailToLoad")
+    );
+    AdMobInterstitial.addEventListener("interstitialDidOpen", () =>
+        console.log("interstitialDidOpen")
+    );
+    AdMobInterstitial.addEventListener("interstitialDidClose", () => {
+          //광고가 끝나면 다음 코드 줄이 실행!
+        console.log("interstitialDidClose")
+      
+    });
+},[])
+
   let temp = [];
   let userUniqueId; // UserId
   let resultFile, resultVideo, resultDoc; // Doc, Image Result
@@ -92,6 +114,7 @@ export default function Upload(props) {
                 });
             }
           }
+          interstitial();
         }
       });
   };
@@ -160,6 +183,7 @@ export default function Upload(props) {
                 });
             }
           }
+          interstitial();
         }
       });
   };
@@ -224,6 +248,7 @@ export default function Upload(props) {
                 });
             }
           }
+          interstitial();
         }
       });
   };
@@ -242,6 +267,15 @@ export default function Upload(props) {
     // }
   };
   //#endregion
+  const interstitial = async () =>{
+    try {
+      await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+      await AdMobInterstitial.showAdAsync();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Modal

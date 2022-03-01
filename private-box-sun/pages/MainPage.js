@@ -332,7 +332,7 @@ const styles = StyleSheet.create({
   },
   CardHeader: {
     flex: 1,
-    height: 30,
+    height: 10,
     width: "100%",
     backgroundColor: "#ffffff",
     marginTop: 10,

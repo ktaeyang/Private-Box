@@ -15,7 +15,6 @@ import * as Application from "expo-application";
 import AlertAsync from "react-native-alert-async";
 import { firebase_db } from "../firebaseConfig";
 
-
 export default function CardDocument({
   content,
   props,
@@ -81,15 +80,8 @@ export default function CardDocument({
   };
   return (
     <View style={styles.card}>
-      <TouchableOpacity
-        onPress={() => {
-        }}
-      >
+      <TouchableOpacity onPress={() => {}}>
         <View style={styles.cardImage}>
-          <Image
-            style={{ width: "100%", borderWidth: 3 }}
-            resizeMode="contain"
-          />
           <Text style={styles.docText} numberOfLines={1}>
             {`  `}
             {content.name}
@@ -153,6 +145,6 @@ const styles = StyleSheet.create({
   container2: {
     flex: 1,
     //paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#000000',
+    backgroundColor: "#000000",
   },
 });
