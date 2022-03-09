@@ -2,7 +2,7 @@
   "expo": {
     "name": "Private box",
     "slug": "Private-box",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "1.0.2",
+      "buildNumber": "1.0.4",
       "bundleIdentifier": "com.private.box",
       "config": {
         "googleMobileAdsAppId": ""
@@ -26,7 +26,7 @@
     },
     "android": {
       "package": "com.private.box",
-          "versionCode": 2,
+          "versionCode": 4,
           "config": {
             "googleMobileAdsAppId": "ca-app-pub-7098615219534704~7542069201"
           }
